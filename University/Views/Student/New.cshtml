@@ -1,0 +1,37 @@
+﻿@model University.VewModels.StudentFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Save", "Student"))
+{
+    @*@Html.ValidationSummary()*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Student.FirstName)
+        @Html.TextBoxFor(m => m.Student.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Student.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Student.LastName)
+        @Html.TextBoxFor(m => m.Student.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Student.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Student.Group.Name)
+        @Html.DropDownListFor(m => m.Student.GroupId, new SelectList(Model.Groups, "Id", "Name"), "Select group" , new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Student.GroupId)
+        @if (Model.Student != null)
+        {
+            @Html.HiddenFor(p=> p.Student.Id)
+        }
+        @Html.AntiForgeryToken()
+        
+    </div>
+    <button type="submit" , class="btn btn-primary">save</button>
+}
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    }
+

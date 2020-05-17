@@ -1,0 +1,12 @@
+﻿@model University.VewModels.CouseFormViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Course : @Model.Course.Name</h4>
+@foreach (var item in Model.Groups)
+{
+    <li>@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id }, null)</li>
+}
+

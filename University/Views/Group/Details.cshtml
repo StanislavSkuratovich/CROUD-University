@@ -1,0 +1,32 @@
+﻿@model University.VewModels.GroupFormViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4>Group @Model.Group.Name</h4>
+<table>
+    <thead>
+        <tr><th><h4>Students</h4></th></tr>
+    </thead>
+    @foreach (var item in Model.Students)
+    {
+    <tr style='text-align:left;'>
+        <td>@Html.ActionLink((item.FirstName + item.LastName), "Details", "Student", new { id = item.Id }, null) </td>
+        <td>@Html.ActionLink("Edit", "Edit", "Student", new { id = item.Id }, null) </td>
+        <td>@Ajax.ActionLink("Delete", "Delete", "Student", new { id = item.Id} , null) </td>
+        @*<td>@Ajax.ActionLink("",this.Url.ToString(),) </td>*@
+    </tr>
+    }
+</table>
+@if (Model.Students.Count() == 0)
+{
+    <p>
+        @Html.ActionLink("Delete group", "Delete", "Group", new { id = Model.Group.Id }, null)
+    </p>
+}
+else
+{
+    <p>For deleting the group you should delete all the students first</p>
+}
+
+

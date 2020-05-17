@@ -1,0 +1,97 @@
+﻿
+@model University.VewModels.StudentIndexViewModelWithGroups
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string name = nameof(University.Course.Name);
+    var en = Environment.GetEnvironmentVariable(name);
+}
+
+@{
+    ViewBag.Title = "Get Students";
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId = "studentsTable",
+        InsertionMode = InsertionMode.Replace
+    };
+}
+
+
+<table style="background-color:green">
+    <thead>
+        <tr>
+
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Group</th>
+
+        </tr>
+    </thead>
+    <tbody id="studentsTable">
+        @Html.Action("GetStudentsData", new { Model })
+</table>
+
+@*@using (Html.BeginForm())*@
+@using (Ajax.BeginForm(ajaxOptions))
+{
+
+    <div>
+        @Html.Label("Group")
+        @Html.DropDownListFor(m => m.GroupAsName, new SelectList(Model.Groups, name, name), "All", new { @class = "form-control" })
+
+        <button type="submit">Submit</button>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model string
+    @{
+        ViewBag.Title = "Get Students";
+    }
+    <h2>Get Products</h2>
+
+
+
+    <table style="background-color:green">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Group</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @Html.Action("GetStudentsData", new { selectedCategory = Model })
+        </tbody>
+    </table>*@
+
+@*@using (Html.BeginForm())
+    {
+        <div>
+            @Html.DropDownList("selectedCategory", new SelectList(
+                new[] { "All" }.Concat(Enum.GetNames(typeof(Group)))))
+            <button type="submit">Submit</button>
+        </div>
+    }*@
+

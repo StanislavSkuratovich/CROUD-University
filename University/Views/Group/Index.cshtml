@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Group>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table>
+    <tr>@Html.ActionLink(("Add new group"), "New", "Group",null, new { @style = "color:#7CFC00;" })</tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id }, null)&nbsp;&nbsp</td>
+            <td>@Html.ActionLink("Edit", "Edit", "Group", new { id = item.Id }, null)</td>
+        </tr>
+    }
+</table>

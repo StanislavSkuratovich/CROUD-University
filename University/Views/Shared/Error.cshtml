@@ -1,0 +1,25 @@
+﻿@model string
+
+<!DOCTYPE html>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Error</h1>
+        <h2>This content doesn't exist. Please make sure you enter the address correctly</h2>
+        @if (!Model.ToString().IsEmpty())
+        {
+            <h3> @Model.ToString()</h3>
+        }
+    </hgroup>
+</body>
+</html>

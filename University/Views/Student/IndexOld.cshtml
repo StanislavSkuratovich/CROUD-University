@@ -1,0 +1,31 @@
+﻿@model IList<Student>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table-bordered">
+    <caption>Existing students</caption>
+    <tr class="card-title" style=" background: linear-gradient(#49708f, #293f50);">
+        <th scope="col">Student name</th>
+        <th scope="col">Edit student</th>
+        <th scope="col">Delete student</th>
+    </tr>
+    
+    @Html.ActionLink("Add new student", "New", null, new { @style = "color:#7CFC00;" })
+    @foreach (Student item in Model)
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder{ Capacity = 32};
+        sb.Append(item.FirstName + " " + item.LastName);
+        //sb.Insert(sb.Length, ' ');
+        //sb.Insert(sb.Length, ' ');
+        //sb.Append(item.LastName);
+        string student = string.Format("{0}{1}{2}", item.FirstName, "  ", item.LastName);
+    <tr style="" class="tab-content">
+        @*<td>@Ajax.ActionLink(student, "Details", "Student", new { id = item.Id }, null)</td>*@
+        <td>@Ajax.ActionLink(sb.ToString(), "Details", "Student", new { id = item.Id }, null)</td>
+        @*<td><a href="@Url.Action("Details", "Student", new { id = item.Id }, null)"><span>@str</span></a></td>*@
+        <td style=""> @Ajax.ActionLink("Edit", "Edit", "Student", new { id = item.Id }, null)</td>
+        <td>@Ajax.ActionLink("Delete", "Delete", "Student", new { id = item.Id }, null)</td>
+    </tr>
+    }
+</table>
